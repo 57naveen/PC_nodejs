@@ -502,7 +502,9 @@ app.post('/sideinput', async (req, res) => {
         // Close the connection pool
         await pool.close();
 
-        return res.render('dash');
+        //return res.render('dash');
+        return res.redirect('/get-data');
+        
       
     } catch (error) {
         console.error('Error inserting data:', error);
@@ -649,6 +651,44 @@ async function sentmail(req,res,data) {
 }
 
 
+
+//////////////////////////////To get data/////////////////////////////////////////////////
+app.get('/get-data', async (req, res) => {
+    // Define your SQL Server connection configuration
+    const config = {    
+        database: 'login',
+        server: 'WIN-MUSC6MOGOU0\\SQLEXPRESS',
+        driver: 'msnodesqlv8',
+        options: {       
+            trustedConnection: true
+        }  
+    }; 
+
+    try {
+        // Create a SQL Server connection pool
+        const pool = new sql.ConnectionPool(config);
+        await pool.connect();
+
+        // Define your SQL query to select data from the database
+        const query = `
+            SELECT * FROM details;
+        `;
+
+        // Execute the SQL query
+        const request = pool.request();
+        const result = await request.query(query);
+
+        // Close the connection pool
+        await pool.close();
+ 
+        // Render a page with the data
+        return res.render('dash', { data: result.recordset });
+      
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        return res.render('dash', { msg: 'Error fetching data', msg_type: 'error' });
+    }
+}); 
 
 
 

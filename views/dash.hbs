@@ -75,47 +75,28 @@
             </div>
 
             <div class="grid2">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Column 1</th>
-                            <th>Column 2</th>
-                            <th>Column 3</th>
-                            <th>Column 4</th>
-                            <th>Column 5</th>
-                            <th>Column 6</th>
-                            <th>Column 7</th>
-                            <th>Column 8</th>
-                            <th>Column 9</th>
-                            <th>Column 10</th>
-                            <th>Column 11</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Row 1</td>
-                            
-                            <!-- Repeat similar columns for a total of 11 columns -->
-                        </tr>
-                        <!-- Repeat similar rows for a total of 5 rows -->
-                        
-                        <tr>
-                            <!-- Content for Row 2 -->
-                             <td>Row 2</td>
-                        </tr>
-                        <tr>
-                            <!-- Content for Row 3 -->
-                            <td>Row 3</td>
-                        </tr>
-                        <tr>
-                            <!-- Content for Row 4 -->
-                            <td>Row 4</td>
-                        </tr>
-                        <tr>
-                            <!-- Content for Row 5 -->
-                             <td>Row 5</td>
-                        </tr>
-                    </tbody>
+               <!-- grid2.ejs -->
+<table>
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Consultant Name</th>
+            <th>Ticket Number</th>
+            <!-- Add other table headers here -->
+        </tr>
+    </thead>
+    <tbody>
+        <% data.forEach(item => { %>
+            <tr>
+                <td><%= item.Date %></td>
+                <td><%= item.ConsultantName %></td>
+                <td><%= item.TicketNumber %></td>
+                <!-- Add other table cells here -->
+            </tr>
+        <% }); %>
+    </tbody>
+</table>
+
                 </table>
             </div>
         </div>
