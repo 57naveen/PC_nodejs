@@ -327,14 +327,47 @@ main.insight2
 
 
 
-    .grid2 {
-        width: 25rem; /* Adjust the width as a percentage or in pixels */
-        height: 180px; /* Adjust the height as needed */
-        display: grid;
-        align-items: center; /* Center align items vertically */
-        
-    } 
+.grid2 {
+    /* Your existing grid2 styles */
+    position: relative;
+   
+     /* You can adjust the width as needed */
+    margin: 0 auto; /* Center the grid horizontally */
+    position: relative;
+    padding-top: 5px;
+    width: 50%;
+}
 
+.table-container {
+    max-height: 400px;
+    overflow-x: auto;
+    width: 90%;
+}
+
+/* Reduce the text size for table headers */
+.table-container th {
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+/* Reduce the text size for table cells and prevent text wrapping */
+.table-container td {
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+/* Allow "Brief Details" to wrap text */
+.table-container td:nth-child(10) {
+    white-space: normal;
+}
+
+.parent-container {
+    /* Set the parent container to use flex layout */
+    display: flex;
+     /* Column layout to stack items vertically */
+     /* Align items at the top and bottom */
+    height: 50vh; /* Set the height of the parent container to 100% viewport height */
+}
 
 
 

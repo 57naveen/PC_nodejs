@@ -503,3 +503,26 @@ if (isLoggedIn === 'true') {
 
 // Set a flag in sessionStorage to indicate that the user is logged in
 sessionStorage.setItem('isLoggedIn', 'true');
+
+
+///////////////////////////FETCH DATA//////////////////////////////////////
+// Use JavaScript to fetch data and populate the table
+fetch('/get-data')
+.then(response => response.json())
+.then(data => {
+    const tableBody = document.getElementById('data-table-body');
+    data.forEach(item => {
+        const row = tableBody.insertRow();
+        row.insertCell(0).textContent = item.Date;
+        row.insertCell(1).textContent = item.ConsultantName;
+        row.insertCell(2).textContent = item.TicketNumber;
+        row.insertCell(3).textContent = item.TypeOfTicket;
+        row.insertCell(4).textContent = item.ProcessDocumentRevision;
+        row.insertCell(5).textContent = item.Status;
+        row.insertCell(6).textContent = item.FromTime;
+        row.insertCell(7).textContent = item.ToTime;
+        row.insertCell(8).textContent = item.TicketAssignedDate;
+        row.insertCell(9).textContent = item.BriefDetails;
+    });
+})
+.catch(error => console.error('Error:', error));

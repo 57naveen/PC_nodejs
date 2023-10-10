@@ -503,7 +503,7 @@ app.post('/sideinput', async (req, res) => {
         await pool.close();
 
         //return res.render('dash');
-        return res.redirect('/get-data');
+       return res.redirect('/get-data');
         
       
     } catch (error) {
@@ -623,7 +623,7 @@ async function sentmail(req,res,data) {
         // Define email data
         const mailOptions = {
             from: 'esspldummy18@gmail.com',
-            to: 'naveenkishored18ca057@gmail.com',
+            to: 'naveenkishore65@gmail.com',
             subject: 'Daily Time Sheet',
             text: `Hi All,
         
@@ -655,6 +655,7 @@ async function sentmail(req,res,data) {
 //////////////////////////////To get data/////////////////////////////////////////////////
 app.get('/get-data', async (req, res) => {
     // Define your SQL Server connection configuration
+    console.log('GET /get-data route called');
     const config = {    
         database: 'login',
         server: 'WIN-MUSC6MOGOU0\\SQLEXPRESS',
@@ -671,24 +672,29 @@ app.get('/get-data', async (req, res) => {
 
         // Define your SQL query to select data from the database
         const query = `
-            SELECT * FROM details;
+        SELECT *
+        FROM details
+        ORDER BY Date DESC
         `;
 
         // Execute the SQL query
         const request = pool.request();
         const result = await request.query(query);
+       
 
         // Close the connection pool
         await pool.close();
- 
-        // Render a page with the data
-        return res.render('dash', { data: result.recordset });
-      
+
+        // Send the retrieved data as JSON
+        res.json(result.recordset);
+
     } catch (error) {
         console.error('Error fetching data:', error);
-        return res.render('dash', { msg: 'Error fetching data', msg_type: 'error' });
+        res.status(500).json({ error: 'Error fetching data' });
     }
-}); 
+});
+
+
 
 
 
